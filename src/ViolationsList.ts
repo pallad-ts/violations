@@ -53,9 +53,8 @@ export class ViolationsList extends CHECK.clazz {
 		if (violation) {
 			if (ViolationsList.isType(violation)) {
 				return violation.getViolations();
-			} else {
-				return [violation];
 			}
+			return [violation];
 		}
 
 		return [];
