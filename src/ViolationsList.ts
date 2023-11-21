@@ -10,7 +10,7 @@ function matchesPath(path: string[], searchPath: string[]) {
 const CHECK = new TypeCheck<ViolationsList>('@pallad/violations/ViolationsList');
 
 export class ViolationsList extends CHECK.clazz {
-	private violations: Violation[] = [];
+	private storage: Violation[] = [];
 
 	static create() {
 		return new ViolationsList();
@@ -19,7 +19,7 @@ export class ViolationsList extends CHECK.clazz {
 	addViolation(message: string, path?: string[] | string, code?: string, params?: any[]): this;
 	addViolation(violation: Violation): this;
 	addViolation(messageOrViolation: string | Violation, path?: string[] | string, code?: string, params?: any[]): this {
-		this.violations.push(typeof messageOrViolation === 'string' ? createViolation(messageOrViolation, path, code, params) : messageOrViolation);
+		this.storage.push(typeof messageOrViolation === 'string' ? createViolation(messageOrViolation, path, code, params) : messageOrViolation);
 		return this;
 	}
 
@@ -29,7 +29,7 @@ export class ViolationsList extends CHECK.clazz {
 	) {
 		const finalPath = Array.isArray(path) ? path : [path];
 
-		this.violations.push(
+		this.storage.push(
 			...this.extractViolationForMerge(violationData)
 				.map(violation => {
 					const newPath = finalPath.concat(violation.path ?? []);
@@ -43,7 +43,7 @@ export class ViolationsList extends CHECK.clazz {
 	}
 
 	merge(...violations: Array<Violation | ViolationsList | undefined>): this {
-		this.violations.push(
+		this.storage.push(
 			...violations.flatMap(x => this.extractViolationForMerge(x))
 		);
 		return this;
@@ -62,11 +62,11 @@ export class ViolationsList extends CHECK.clazz {
 
 	getForPath(path: string[] | string): Violation[] {
 		const realPath = Array.isArray(path) ? path : [path];
-		return this.violations.filter(v => v.path && matchesPath(v.path, realPath));
+		return this.storage.filter(v => v.path && matchesPath(v.path, realPath));
 	}
 
 	getViolations() {
-		return this.violations;
+		return this.storage;
 	}
 
 	getListOrNothing() {
@@ -74,5 +74,17 @@ export class ViolationsList extends CHECK.clazz {
 			return this;
 		}
 		return undefined;
+	}
+
+	get violations() {
+		return this.storage;
+	}
+
+	get isEmpty() {
+		return this.getViolations().length === 0;
+	}
+
+	get hasViolations() {
+		return !this.isEmpty;
 	}
 }

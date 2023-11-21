@@ -1,4 +1,4 @@
-import {ViolationsList} from "@src/index";
+import {createViolation, ViolationsList} from "@src/index";
 
 function createFakeViolation(path: string[]) {
 	return {
@@ -204,14 +204,30 @@ describe('ViolationsList', () => {
 
 	describe('get list of nothing', () => {
 		it('returns undefined if list has no violations', () => {
-			expect(ViolationsList.create().getListOrNothing())
+			const list = ViolationsList.create();
+			expect(list.getListOrNothing())
 				.toBe(undefined);
+
+			expect(list.violations)
+				.toEqual([]);
+			expect(list.isEmpty)
+				.toBe(true);
+			expect(list.hasViolations)
+				.toBe(false);
 		});
 
 		it('returns list if list has violations', () => {
-			const list = ViolationsList.create().addViolation('test');
+			const violation = createViolation('test');
+			const list = ViolationsList.create().addViolation(violation);
 			expect(list.getListOrNothing())
 				.toBe(list);
+
+			expect(list.violations)
+				.toEqual([violation]);
+			expect(list.isEmpty)
+				.toBe(false);
+			expect(list.hasViolations)
+				.toBe(true);
 		});
 	});
 });
