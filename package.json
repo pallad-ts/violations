@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/pallad-ts/violations#readme",
   "devDependencies": {
-    "@pallad/scripts": "^3.0.2",
+    "@pallad/scripts": "^3",
     "barrelsby": "^2.5.1"
   },
   "dependencies": {
