@@ -1,6 +1,6 @@
 {
   "name": "@pallad/violations",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "main": "compiled/index.js",
   "compiled": "compiled/index.d.ts",
   "scripts": {
