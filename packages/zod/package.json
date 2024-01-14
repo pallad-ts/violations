@@ -1,0 +1,32 @@
+{
+  "name": "@pallad/violations-zod",
+  "version": "0.0.0",
+  "main": "compiled/index.js",
+  "compiled": "compiled/index.d.ts",
+  "scripts": {
+    "test": "pallad-scripts test",
+    "compile": "pallad-scripts compile",
+    "prepack": "npm run generate-barrels",
+    "prepublishOnly": "npm run compile",
+    "lint": "pallad-scripts lint",
+    "generate-barrels": "barrelsby --delete -d ./src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pallad-ts/violations.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Łukasz Kużyński <lukasz.kuzynski@gmail.com> (http://wookieb.pl)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pallad-ts/violations/issues"
+  },
+  "homepage": "https://github.com/pallad-ts/violations#readme",
+  "dependencies": {
+    "@sweet-monads/either": "^3.3.1",
+    "zod": "^3.22.4",
+    "@pallad/violations": "*"
+  }
+}

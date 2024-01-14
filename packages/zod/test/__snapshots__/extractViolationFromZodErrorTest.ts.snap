@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`extractViolationFromZodError should return the all issues for input: { foo: 'bar' } 1`] = `
+[
+  {
+    "code": undefined,
+    "message": "foo",
+    "params": undefined,
+    "path": undefined,
+  },
+]
+`;
+
+exports[`extractViolationFromZodError should return the all issues for input: { foo: 100 } 1`] = `
+[
+  {
+    "code": undefined,
+    "message": "Expected string, received number",
+    "params": undefined,
+    "path": [
+      "foo",
+    ],
+  },
+]
+`;
