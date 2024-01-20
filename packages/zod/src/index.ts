@@ -4,5 +4,7 @@
 
 export * from "./convertZodErrorToViolationsList.ts";
 export * from "./extractViolationsFromZodError";
+export * from "./fromAsyncZodValidation";
+export * from "./fromAsyncZodValidationAndKnownInput";
 export * from "./fromZodValidation";
 export * from "./fromZodValidationAndKnownInput";
