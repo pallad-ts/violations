@@ -5,7 +5,7 @@ import {fromZodValidation} from "./fromZodValidation";
 
 export function fromZodValidationAndKnownInput<T extends z.ZodSchema<any>>(
 	schema: T,
-	input: unknown
+	input: z.input<T>
 ): Either<ViolationsList, z.infer<T>> {
 	return fromZodValidation(schema, input);
 }

@@ -5,7 +5,7 @@ import {fromAsyncZodValidation} from "./fromAsyncZodValidation";
 
 export function fromAsyncZodValidationAndKnownInput<T extends z.ZodSchema<any>>(
 	schema: T,
-	input: unknown
+	input: z.input<T>
 ): Promise<Either<ViolationsList, z.infer<T>>> {
 	return fromAsyncZodValidation(schema, input);
 }
