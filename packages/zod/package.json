@@ -11,6 +11,9 @@
     "lint": "pallad-scripts lint",
     "generate-barrels": "barrelsby --delete -d ./src"
   },
+  "files": [
+    "compiled"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pallad-ts/violations.git"
