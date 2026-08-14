@@ -1,6 +1,6 @@
 {
   "name": "@pallad/violations-zod",
-  "version": "1.2.2",
+  "version": "2.0.0",
   "main": "compiled/index.js",
   "compiled": "compiled/index.d.ts",
   "scripts": {
