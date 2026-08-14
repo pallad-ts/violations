@@ -3,10 +3,26 @@
 exports[`extractViolationFromZodError should return the all issues for input: { foo: 'bar' } 1`] = `
 [
   {
-    "code": undefined,
-    "message": "foo",
+    "code": "invalid_type",
+    "message": "Invalid input: expected object, received undefined",
     "params": undefined,
-    "path": undefined,
+    "path": [
+      "nested",
+    ],
+  },
+]
+`;
+
+exports[`extractViolationFromZodError should return the all issues for input: { foo: 'bar', nested: {} } 1`] = `
+[
+  {
+    "code": "invalid_type",
+    "message": "Invalid input: expected number, received undefined",
+    "params": undefined,
+    "path": [
+      "nested",
+      "bar",
+    ],
   },
 ]
 `;
@@ -14,11 +30,19 @@ exports[`extractViolationFromZodError should return the all issues for input: { 
 exports[`extractViolationFromZodError should return the all issues for input: { foo: 100 } 1`] = `
 [
   {
-    "code": undefined,
-    "message": "Expected string, received number",
+    "code": "invalid_type",
+    "message": "Invalid input: expected string, received number",
     "params": undefined,
     "path": [
       "foo",
+    ],
+  },
+  {
+    "code": "invalid_type",
+    "message": "Invalid input: expected object, received undefined",
+    "params": undefined,
+    "path": [
+      "nested",
     ],
   },
 ]

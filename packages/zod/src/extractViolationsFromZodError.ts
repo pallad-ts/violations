@@ -6,16 +6,7 @@ export function extractViolationsFromZodError(error: z.ZodError) {
 }
 
 function* violationsFromZodError(error: z.ZodError) {
-	const flattenErrors = error.flatten();
-	for (const [field, errors] of Object.entries(flattenErrors.fieldErrors)) {
-		if (errors) {
-			for (const error of errors) {
-				yield createViolation(error, field);
-			}
-		}
-	}
-
-	for (const error of flattenErrors.formErrors) {
-		yield createViolation(error);
+	for (const issue of error.issues) {
+		yield createViolation(issue.message, issue.path.map(x => x.toString()), issue.code);
 	}
 }
